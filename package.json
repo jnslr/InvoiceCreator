@@ -1,0 +1,20 @@
+{
+  "name": "invoicecreatorpwa",
+  "version": "1.0.0",
+  "description": "- If no `.env` is specified, the module can be imported and then used in another express application.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ux1F595/PWA_TEST/issues"
+  },
+  "homepage": "https://github.com/Ux1F595/PWA_TEST#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.1-security"
+  }
+}
