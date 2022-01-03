@@ -19,7 +19,7 @@ window.onload = () => {
     'use strict';
 
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js');
+      navigator.serviceWorker.register('/InvoiceCreator/sw.js', {scope: '/InvoiceCreator/'})
 
       navigator.serviceWorker.addEventListener("message", (evt) => {
         if(evt.data.type=='version'){
