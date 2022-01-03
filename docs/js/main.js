@@ -1,6 +1,6 @@
 const routes = [
-  { name: 'home', path: '/', component: FileViewer },
-  { name: 'edit', path: '/edit', component: InvoiceCreator}
+  { name: 'home', path: '/', component: httpVueLoader('components/fileViewer.vue') },
+  { name: 'edit', path: '/edit', component: httpVueLoader('components/invoiceCreator.vue') }
 ]
 
 const router = new VueRouter({
@@ -9,6 +9,9 @@ const router = new VueRouter({
 
 const app = new Vue({
   el: '#app',
+  components: {
+    'my-header': httpVueLoader('components/header.vue'),
+  },
   router: router,
   data: {
     version: null

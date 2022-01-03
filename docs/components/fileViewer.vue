@@ -1,25 +1,26 @@
-const FileViewer = {
-    name: 'file-viewer',
-    template: `
-        <div class="container-fluid">
-            <div class="row mt-2">
-                <div class="col-12" v-if="permission">
-                    <div class="list-group">
-                        <a class="list-group-item list-group-item-action list-group-item-info" @click=newFile()>Create new file</a>
-                        <a class="list-group-item disabled">File list:</a>
-                        <a v-for="file in files" class="list-group-item list-group-item-action" href="#" @click=readFile(file)>{{file.name}}</a>
-                    </div>               
-                </div>
-                <div class="col-md-4" v-else >
-                    <div class="list-group">
-                        <a class="list-group-item list-group-item-action list-group-item-info" @click=getPermission()><span class="oi oi-folder"></span> SelectFolder</a>
-                        <a class="list-group-item disabled">Recent Folders:</a>
-                        <a v-for="dir in recentDirs" class="list-group-item list-group-item-action" href="#" @click=getPermission(dir)>{{dir.name}}</a>
-                    </div>                
-                </div>
+<template>
+    <div class="container-fluid">
+        <div class="row mt-2">
+            <div class="col-12" v-if="permission">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action list-group-item-info" @click=newFile()>Create new file</a>
+                    <a class="list-group-item disabled">File list:</a>
+                    <a v-for="file in files" class="list-group-item list-group-item-action" href="#" @click=readFile(file)>{{file.name}}</a>
+                </div>               
+            </div>
+            <div class="col-md-4" v-else >
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action list-group-item-info" @click=getPermission()><span class="oi oi-folder"></span> SelectFolder</a>
+                    <a class="list-group-item disabled">Recent Folders:</a>
+                    <a v-for="dir in recentDirs" class="list-group-item list-group-item-action" href="#" @click=getPermission(dir)>{{dir.name}}</a>
+                </div>                
             </div>
         </div>
-    `,
+    </div>
+</template>
+
+<script>
+module.exports = {
     data: function(){
         return {
             recentDirs: [],
@@ -112,4 +113,5 @@ const FileViewer = {
             }
         }          
     }
-};
+}
+</script>
