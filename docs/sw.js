@@ -17,8 +17,8 @@ var filesToCache = [
   '/InvoiceCreator/js/libs/vue-dev.js',
   '/InvoiceCreator/js/libs/vue-router.min.js',
   '/InvoiceCreator/js/main.js',
-  '/InvoiceCreator/components/fileViewer.js',
-  '/InvoiceCreator/components/header.js',
+  '/InvoiceCreator/components/fileViewer.vue',
+  '/InvoiceCreator/components/header.vue',
   '/InvoiceCreator/components/invoiceCreator.js'
 ];
 
