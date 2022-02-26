@@ -51,7 +51,7 @@ module.exports = {
             var start = (this.recentDirs.length-5>0) ? this.recentDirs.length-5 : 0;
             var end = this.recentDirs.length;
             this.recentDirs = this.recentDirs.slice(start,end); //only take the last 5 recent dirs
-            let transaction = this.db.transaction(["RecentDirs"], "readwrite");
+            let transaction = app.db.transaction(["RecentDirs"], "readwrite");
             let request = transaction.objectStore("RecentDirs").put(this.recentDirs,'RecentDirs');
             request.onsuccess = ()=>console.log(`RecentDirs updated: `,this.recentDirs)
         },
@@ -92,26 +92,13 @@ module.exports = {
 
         this.$root.$on('openFolder', this.getPermission);//root is used as event bus
         //this.$root.$on('print', this.print);//root is used as event bus
-
-        let request = indexedDB.open("InvoiceCreator",1);
-        request.onerror = (e) => console.log(e)
-        request.onupgradeneeded = (e) => {
-            console.log('onupgradeneeded');
-            this.db = e.target.result;
-            if (!this.db.objectStoreNames.contains('RecentDirs')){
-                this.db.createObjectStore("RecentDirs");
-            }
-        }
-        //Open DB
-        request.onsuccess = (e) => {
-            this.db = e.target.result;
-            let transaction = this.db.transaction(["RecentDirs"], "readonly");
-            let request = transaction.objectStore("RecentDirs").get('RecentDirs');
-            //ReadFileRefs
-            request.onsuccess = e => {
-                if(e.target.result) this.recentDirs = e.target.result;
-            }
-        }          
+        
+        let transaction = app.db.transaction(["RecentDirs"], "readonly");
+        let request = transaction.objectStore("RecentDirs").get('RecentDirs');
+        //ReadFileRefs
+        request.onsuccess = e => {
+            if(e.target.result) this.recentDirs = e.target.result;
+        }   
     }
 }
 </script>

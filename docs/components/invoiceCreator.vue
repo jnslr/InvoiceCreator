@@ -97,18 +97,18 @@
                 <div class="container-fluid">
                     <div class="row text-muted">
                         <div class="col-4 text-left"><ul class="list-unstyled">
-                            <li>xxxxxxxxx</li>
-                            <li>xxxxxxxxxxxx</li>
-                            <li>xxxxxxxxxxxxxxxx</li>
+                            <li>{{settings.UserName}}</li>
+                            <li>{{settings.UserStreet}}</li>
+                            <li>{{settings.UserZip}}</li>
                         </ul></div>
                         <div class="col-4 text-center"><ul class="list-unstyled">
-                            <li>xxx</li>
-                            <li>xxx</li>
+                            <li>{{settings.UserMail}}</li>
+                            <li>{{settings.UserPhone}}</li>
                         </ul></div>
                         <div class="col-4 text-right"><ul class="list-unstyled">
-                            <li>xxx</li>
-                            <li>xxx</li>
-                            <li>xxx</li>
+                            <li>{{settings.UserIBAN}}</li>
+                            <li>{{settings.UserBIC}}</li>
+                            <li>{{settings.UserTaxNumber}}</li>
                         </ul></div>
                     </div>
                 </div>         
@@ -174,7 +174,8 @@ module.exports = {
                 items: []
             },
             importSchema: importSchema, //Schema for importing/reading from file
-            exportSchema: exportSchema //Schema for saving to file,
+            exportSchema: exportSchema, //Schema for saving to file,
+            settings: {}
         }
       },
     computed: {
@@ -278,6 +279,21 @@ module.exports = {
         keyUpHandler(e){
             if (e.key=='Delete')
             this.deleteSelectedRows();
+        },
+        loadSettings(){
+            let transaction = app.db.transaction(["Settings"], "readonly");
+            let request = transaction.objectStore("Settings").openCursor();
+            request.onsuccess = (e) => {
+                let cursor = e.target.result;
+                if (cursor) {
+                    console.log(cursor.primaryKey, cursor.value);
+                    this.settings[cursor.primaryKey] = cursor.value;
+                    cursor.continue();
+                }
+                else{
+                    this.$forceUpdate(); 
+                }
+            }
         }
     },
     created: function () {
@@ -330,6 +346,7 @@ module.exports = {
 
         document.addEventListener ("keyup", this.keyUpHandler);
         document.addEventListener ("keydown", this.keyDownHandler);
+        this.loadSettings();
     },
     destroyed: function(){
         document.removeEventListener("keyup",this.keyUpHandler);

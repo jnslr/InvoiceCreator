@@ -1,6 +1,15 @@
+let dbinit = false
+
 const routes = [
-  { name: 'home', path: '/', component: httpVueLoader('components/fileViewer.vue') },
-  { name: 'edit', path: '/edit', component: httpVueLoader('components/invoiceCreator.vue') }
+  { name: 'home', path: '/',
+    redirect: to=> {
+      if (dbinit)
+        return 'fileViewer'
+    }
+  },
+  { name: 'fileViewer', path: '/fileViewer', component: httpVueLoader('components/fileViewer.vue') },
+  { name: 'edit', path: '/edit', component: httpVueLoader('components/invoiceCreator.vue') },
+  { name: 'settings', path: '/settings', component: httpVueLoader('components/settings.vue') }
 ]
 
 const router = new VueRouter({
@@ -14,7 +23,39 @@ const app = new Vue({
   },
   router: router,
   data: {
-    version: null
+    version: null,
+    db: null
+  },
+  methods: {
+    loadDb: function(){
+      return new Promise( (resolve,reject)=>{
+        let request = indexedDB.open("InvoiceCreator",2);
+        request.onerror = (e) => {
+          console.log(e)
+          reject("DB could not be loaded")
+        }
+        request.onupgradeneeded = (e) => {
+            console.log('database upgrade');
+            let db = e.target.result;
+            if (!db.objectStoreNames.contains('Settings')){
+              db.createObjectStore("Settings");
+            }
+            if (!db.objectStoreNames.contains('RecentDirs')){
+              db.createObjectStore("RecentDirs");
+            }
+            resolve(db)
+        }
+        request.onsuccess = (e)=> {
+          console.log('database opened')
+          resolve(e.target.result);
+        }
+      })
+    }
+  },
+  created: async function () {
+    this.db = await this.loadDb();
+    this.$router.push('fileViewer')
+    dbinit = true
   }
 })
 

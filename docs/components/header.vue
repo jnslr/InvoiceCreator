@@ -23,6 +23,10 @@
             </li>
         </ul>
     </div>
+
+    <div class="d-flex flex-row">
+        <span class="oi oi-cog" role="button" @click="$router.push('settings')"></span>
+    </div>
 </nav>
 </template>
 

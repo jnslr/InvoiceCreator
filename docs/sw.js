@@ -1,5 +1,5 @@
 var cacheName = 'InvoiceCreator';
-var version = '0.1'; //App is only updated when SW changes --> Increase this number to initiate update
+var version = '0.2'; //App is only updated when SW changes --> Increase this number to initiate update
 var filesToCache = [
   '/InvoiceCreator/',
   '/InvoiceCreator/index.html',
@@ -19,7 +19,7 @@ var filesToCache = [
   '/InvoiceCreator/js/main.js',
   '/InvoiceCreator/components/fileViewer.vue',
   '/InvoiceCreator/components/header.vue',
-  '/InvoiceCreator/components/invoiceCreator.js'
+  '/InvoiceCreator/components/invoiceCreator.vue'
 ];
 
 /* Start the service worker and cache all of the app's content */
