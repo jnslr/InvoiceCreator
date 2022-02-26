@@ -19,7 +19,8 @@ var filesToCache = [
   '/InvoiceCreator/js/main.js',
   '/InvoiceCreator/components/fileViewer.vue',
   '/InvoiceCreator/components/header.vue',
-  '/InvoiceCreator/components/invoiceCreator.vue'
+  '/InvoiceCreator/components/invoiceCreator.vue',
+  '/InvoiceCreator/components/settings.vue'
 ];
 
 /* Start the service worker and cache all of the app's content */
