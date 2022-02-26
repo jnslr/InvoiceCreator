@@ -1,34 +1,36 @@
 <template>
 <div id="invoiceContainer" class="container-fluid" v-on:keyup.delete="deleteSelectedRows">       
             <div class="row mb-5 mt-3">
-                <div class="col-sm-6">
-                    <table style="width:100%;" ><tbody>
+                <div id="customer-div" class="col-sm-6">
+                    <table><tbody>
                         <tr><td><input class="input-unstyled" v-model="invoice.customer.company" placeholder="Firma"></td></tr>
                         <tr><td><input class="input-unstyled" v-model="invoice.customer.name" placeholder="Ansprechpartner"></td></tr>
                         <tr><td><input class="input-unstyled" v-model="invoice.customer.address" placeholder="Straße Nr."></td></tr>
                         <tr><td><input class="input-unstyled" v-model="invoice.customer.city" placeholder="Stadt"></td></tr>
                     </tbody></table>
                 </div>
-                <div class="col-sm-6">
-                    <table class="ml-auto"><tbody>
-                        <tr>
-                            <td class="text-right font-weight-bolder" >Rechnungsnummer</td>
-                            <td><input type="number" class="input-unstyled text-right" v-model="invoice.invoice.inv_number" placeholder="Rechnungsnummer"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-right font-weight-bolder">Rechnungsdatum</td>
-                            <td><input type="date" class="input-unstyled text-right" v-model="invoice.invoice.inv_date" ></td>
-                        </tr>
-                        <tr>
-                            <td class="text-right font-weight-bolder">Lieferdatum</td>
-                            <td><input type="date" class="input-unstyled text-right" v-model="invoice.invoice.del_date"></td>
-                        </tr>
-                    </tbody></table>
+                <div class="col-sm-6 d-flex flex-row-reverse">
+                    <div id="invoice-number">
+                        <table><tbody>
+                            <tr>
+                                <td class="text-right font-weight-bolder" >Rechnungsnummer</td>
+                                <td><input type="number" class="input-unstyled text-right" v-model="invoice.invoice.inv_number" placeholder="Rechnungsnummer"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-right font-weight-bolder">Rechnungsdatum</td>
+                                <td><input type="date" class="input-unstyled text-right" v-model="invoice.invoice.inv_date" ></td>
+                            </tr>
+                            <tr>
+                                <td class="text-right font-weight-bolder">Lieferdatum</td>
+                                <td><input type="date" class="input-unstyled text-right" v-model="invoice.invoice.del_date"></td>
+                            </tr>
+                        </tbody></table>
+                    </div>
                 </div>
             </div>
-            <div class="row mb-5">
+            <div class="row mb-3">
                 <div class="col-12 text-left">
-                    <h2 class="font-weight-bold">Rechnung</h2>
+                    <h3 class="font-weight-bold">Rechnung</h3>
                 </div>
             </div>
             <div class="row mb-2">

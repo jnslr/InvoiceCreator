@@ -38,3 +38,17 @@
     -moz-box-shadow: none;
     box-shadow: none;
 }
+
+#customer-div table {
+    width: 100%;
+}
+
+#customer-div {
+    line-height: 1;
+}
+
+#invoice-number {
+    border: 1px solid #6c757d;
+    border-radius: 20px;
+    padding: 5px;
+}
