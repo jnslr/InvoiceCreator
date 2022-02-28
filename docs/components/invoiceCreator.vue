@@ -124,8 +124,8 @@ module.exports = {
         
         var itemImportSchema = joi.object({
             description: joi.string(),
-            quantity: joi.number().min(0).precision(2),
-            cost: joi.number().min(0).precision(2)
+            quantity: joi.number().precision(2),
+            cost: joi.number().precision(2)
         });
         var itemExportSchema = itemImportSchema.fork(['description','quantity','cost'],it=>it.required()).required();
 
