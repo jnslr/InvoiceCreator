@@ -52,7 +52,7 @@
                         <tbody id="items">
                             <tr  @click="selectRow" v-for="(item,index) in invoice.items" style="cursor:pointer">
                                 <td>                                    
-                                    <input @click.stop class="input-table" v-model="item.description" placeholder="Bezeichnung" style="width:100%;"></input>
+                                    <textarea @click.stop @input="resizeTextArea($event)" class="input-table" v-model="item.description" placeholder="Bezeichnung" style="width:100%;resize: none;overflow: hidden;"></textarea>
                                 </td>
                                 <td class="text-center">
                                     <input @click.stop type="number" step="1" class="input-table" v-model.number="item.quantity" placeholder="Menge" style="width:100%;text-align:center;"></input>
@@ -296,6 +296,10 @@ module.exports = {
                     this.$forceUpdate(); 
                 }
             }
+        },
+        resizeTextArea(e){
+            e.target.style.height = 'auto'
+            e.target.style.height = e.target.scrollHeight*1.25 + 'px'
         }
     },
     created: function () {

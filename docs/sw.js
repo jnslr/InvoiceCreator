@@ -1,5 +1,5 @@
 var cacheName = 'InvoiceCreator';
-var version = '0.4'; //App is only updated when SW changes --> Increase this number to initiate update
+var version = '0.5'; //App is only updated when SW changes --> Increase this number to initiate update
 var filesToCache = [
   '/InvoiceCreator/',
   '/InvoiceCreator/index.html',
